@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Render } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -11,7 +11,16 @@ export class AppController {
    }
 
    @Get('/about')
-   getAbout(): string {
-      return this.appService.getAbout();
+   @Render('index')
+   root() {
+      const pageLists = {
+         message: "I love you so much, my dream girls",
+         pageTitle: 'Nest Application',
+         currentPage: 'nest-application'
+      }
+      return pageLists
    }
+   // getAbout(): string {
+   //    return this.appService.getAbout();
+   // }
 }
